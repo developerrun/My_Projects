@@ -93,3 +93,11 @@ def print_board(board):
                 print(num)
             else:
                 print(str(num) + " ", end="")
+
+if __name__ == "__main__":
+    print("Original Board: ")
+    print_board(board)
+    print("===============================================")
+    print("\nSolved Board")
+    solve(board)
+    print_board(board)
