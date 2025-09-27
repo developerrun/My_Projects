@@ -1,6 +1,3 @@
-import tkinter as tk
-from tkinter import messagebox
-
 board = [
     [0, 0, 5, 2, 6, 0, 7, 0, 1],
     [6, 8, 9, 6, 7, 0, 0, 9, 0],
