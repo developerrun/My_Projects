@@ -14,8 +14,6 @@ board = [
 ]
 
 
-    
-
 def is_valid(board, num, pos):
     # Checks the row.
     row = board[pos[0]]
@@ -30,7 +28,6 @@ def is_valid(board, num, pos):
     if num in column_check:
         return False
          
-    
     # Checks the 3×3 box.
     box_row = (pos[0] // 3)  
     box_column = (pos[1] // 3) 
@@ -79,9 +76,7 @@ def solve(board):
             board[is_empty_cell[0]][is_empty_cell[1]] = 0
 
     return False 
-
     
-
 def print_board(board):
     """
     Prints the Sudoku board in a readable format.
@@ -98,67 +93,3 @@ def print_board(board):
                 print(num)
             else:
                 print(str(num) + " ", end="")
-
-
-
-
-class SudokuGUI:
-    def __init__(self, root, board):
-        self.root = root
-        self.root.title("Sudoku Solver")
-        self.board = board
-        self.cells = [[None for _ in range(9)] for _ in range(9)]
-        self.create_grid()
-        self.create_buttons()
-
-    def create_grid(self):
-        for i in range(9):
-            for j in range(9):
-                frame = tk.Frame(
-                    self.root,
-                    highlightbackground="white",
-                    highlightcolor="white",
-                    highlightthickness=1,
-                    width=50,
-                    height=50,
-                    bg="black"
-                )
-                frame.grid(row=i, column=j)
-                num = self.board[i][j]
-                entry = tk.Label(
-                    frame,
-                    text=str(num) if num != 0 else "",
-                    fg="white",
-                    bg="black",
-                    font=("Arial", 18),
-                    width=2,
-                    height=1
-                )
-                entry.pack(expand=True, fill='both')
-                self.cells[i][j] = entry
-
-    def create_buttons(self):
-        solve_btn = tk.Button(self.root, text="Solve", command=self.solve_board, bg="green", fg="white")
-        solve_btn.grid(row=9, column=0, columnspan=9, sticky="we")
-
-    def solve_board(self):
-        if solve(self.board):
-            for i in range(9):
-                for j in range(9):
-                    self.cells[i][j].config(text=str(self.board[i][j]))
-            messagebox.showinfo("Sudoku Solver", "Sudoku Solved!")
-        else:
-            messagebox.showerror("Sudoku Solver", "Cannot solve the Sudoku!")
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.configure(bg="black")
-    gui = SudokuGUI(root, board)
-    root.mainloop()
-         
-
-    
-
-
-
-
